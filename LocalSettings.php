@@ -250,7 +250,7 @@ $wgGroupPermissions['sysop']['suppressredirect'] = true;
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 $wgScriptPath     = "";
-$wgArticlePath      = "/$1";
+$wgArticlePath      = "/index.php?title=$1";
 $wgUsePathInfo      = true;
 $wgScriptExtension  = ".php";
 
