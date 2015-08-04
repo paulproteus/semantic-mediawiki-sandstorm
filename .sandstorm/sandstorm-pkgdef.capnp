@@ -69,6 +69,9 @@ const pkgdef :Spk.PackageDefinition = (
   # Use this to force-include stuff that you know you need but which may
   # not have been detected as a dependency during `spk dev`. If you list
   # a directory here, its entire contents will be included recursively.
+
+  bridgeConfig = (viewInfo = (permissions = [(name = "admin")]))
+
 );
 
 const myCommand :Spk.Manifest.Command = (
