@@ -52,7 +52,7 @@ if [ ! -d /opt/app/skins/Vector ] ; then
 fi
 
 # Fetch SemanticBundle if needed.
-if [ ! -d /opt/app/extensions/SemanticBundle/SemanticBundle.php ] ; then
+if [ ! -f /opt/app/extensions/SemanticBundle/SemanticBundle.php ] ; then
     wget 'https://docs.google.com/uc?authuser=0&id=0B3i-pfyNssSZVG1DWVNvS3pXS1k&export=download' -O /tmp/bundle.tar.gz
     (cd /opt/app/extensions ; tar zxvf /tmp/bundle.tar.gz)
 fi
