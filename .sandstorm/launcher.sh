@@ -5,6 +5,10 @@ mkdir -p /var/lib/nginx
 mkdir -p /var/log
 mkdir -p /var/log/nginx
 
+mkdir -p /var/mediawiki-db
+cp /opt/app/wiki.sqlite /var/mediawiki-db/my_wiki.sqlite
+ls -l /var/mediawiki-db
+
 # Make /var/mediawiki-cache since I configured MW to want it.
 mkdir -p /var/mediawiki-cache
 

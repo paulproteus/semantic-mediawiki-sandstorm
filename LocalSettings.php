@@ -60,7 +60,7 @@ $wgDBuser = "";
 $wgDBpassword = "";
 
 # SQLite-specific settings
-$wgSQLiteDataDir = "/var";
+$wgSQLiteDataDir = "/var/mediawiki-db";
 $wgObjectCaches[CACHE_DB] = array(
 	'class' => 'SqlBagOStuff',
 	'loggroup' => 'SQLBagOStuff',
