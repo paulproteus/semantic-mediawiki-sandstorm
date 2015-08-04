@@ -16,6 +16,12 @@ for php_ini in /etc/php5/cli/php.ini /etc/php5/fpm/php.ini ; do
     fi
 done
 
+# Remove the images directory if it's a real directory.
+if [ ! "$(readlink -f /opt/app/images)" = "$(readlink -f /var/mediawiki-images)" ] ; then
+    rm -rf /opt/app/images
+    ln -s /var/mediawiki-images /opt/app/images
+fi
+
 # Disable gzip to avoid mojibake on nginx errors.
 sudo chown vagrant /etc/nginx/nginx.conf
 sudo sed -i 's,gzip on;,gzip off;,g' /etc/nginx/nginx.conf
@@ -23,18 +29,6 @@ sudo sed -i 's,gzip on;,gzip off;,g' /etc/nginx/nginx.conf
 if [ ! -f index.php ] ; then
     wget -c https://github.com/wikimedia/mediawiki/archive/1.25.1.tar.gz -O /tmp/tar.gz
     tar zxvf /tmp/tar.gz --strip-components=1
-fi
-
-# If we haven't created /var/mediawiki-images to store user uploads yet,
-# do that now.
-if [ ! -d /var/mediawiki-images ] ; then
-    mkdir -p /var/mediawiki-images
-fi
-
-# Remove the images directory if it's real.
-if [ ! "$(readlink -f /opt/app/images)" = "$(readlink -f /var/mediawiki-images)" ] ; then
-    rm -rf /opt/app/images
-    ln -s /var/mediawiki-images /opt/app/images
 fi
 
 # Only re-run composer install if composer.phar didn't exist until now.

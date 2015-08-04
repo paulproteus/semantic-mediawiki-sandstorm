@@ -9,6 +9,10 @@ mkdir -p /var/log/nginx
 # files here.
 mkdir -p /var/mediawiki-cache
 
+# If we haven't created /var/mediawiki-images to store user uploads yet,
+# do that now.
+mkdir -p /var/mediawiki-images
+
 # If the database does not exist, create it from a basically empty
 # one.
 mkdir -p /var/mediawiki-db
