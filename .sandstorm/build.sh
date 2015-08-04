@@ -1,7 +1,7 @@
 #!/bin/bash
 # Downloads MediaWiki.
 
-set -eu
+set -euo pipefail
 
 cd /opt/app
 
