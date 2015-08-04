@@ -8,6 +8,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # We base ourselves off Debian Jessie
   config.vm.box = "debian/jessie64"
 
+  # Use a PTY while SSH-ing in, to avoid sad warning about stdin not
+  # being a TTY.
+  config.ssh.pty = true
+
   if Vagrant.has_plugin?("vagrant-vbguest") then
     # vagrant-vbguest is a Vagrant plugin that upgrades
     # the version of VirtualBox Guest Additions within each
