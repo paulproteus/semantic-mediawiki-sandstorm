@@ -39,6 +39,9 @@ sed --in-place='' \
         --expression='s/^listen.group = www-data/#listen.group = www-data/' \
         --expression='s/^user = www-data/#user = www-data/' \
         --expression='s/^group = www-data/#group = www-data/' \
+        --expression 's/^\s*error_log.*/error_log stderr;/' \
+        --expression 's/^\s*access_log.*/access_log off;/' \
+         /etc/nginx/nginx.conf
         /etc/php5/fpm/pool.d/www.conf
 # patch /etc/php5/fpm/php-fpm.conf to not have a pidfile
 sed --in-place='' \
