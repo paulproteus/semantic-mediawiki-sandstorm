@@ -30,7 +30,11 @@ $wgScriptPath = "";
 $wgScriptExtension = ".php";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = '//' . $_SERVER['HTTP_HOST'];
+if (isset($_SERVER['HTTP_HOST'])) {
+    $wgServer = '//' . $_SERVER['HTTP_HOST'];
+} else {
+    $wgServer = '';
+}
 
 ## The relative URL path to the skins directory
 $wgStylePath = "$wgScriptPath/skins";
@@ -133,3 +137,15 @@ $wgDefaultSkin = "vector";
 # Add more configuration options below.
 
 $wgShowExceptionDetails = true;
+
+wfLoadSkin( 'Vector' );
+$wgVectorUseSimpleSearch = true;
+$wgVectorUseIconWatch = true;
+
+# Make external links open in new window, aka not break in Sandstorm
+$wgExternalLinkTarget = '_blank';
+
+$wgLogo = null;
+
+require_once( "$IP/extensions/SemanticBundle/SemanticBundleSettings.php" );
+require_once( "$IP/extensions/SemanticBundle/SemanticBundle.php" );

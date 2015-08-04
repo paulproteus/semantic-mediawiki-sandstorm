@@ -5,12 +5,18 @@ mkdir -p /var/lib/nginx
 mkdir -p /var/log
 mkdir -p /var/log/nginx
 
-mkdir -p /var/mediawiki-db
-cp /opt/app/wiki.sqlite /var/mediawiki-db/my_wiki.sqlite
-ls -l /var/mediawiki-db
-
-# Make /var/mediawiki-cache since I configured MW to want it.
+# Make /var/mediawiki-cache since we configured MW to store some cache
+# files here.
 mkdir -p /var/mediawiki-cache
+
+# If the database does not exist, create it from a basically empty
+# one.
+mkdir -p /var/mediawiki-db
+if [ ! -f /var/mediawiki-db/my_wiki.sqlite ] ; then
+    cp /opt/app/wiki.sqlite /var/mediawiki-db/my_wiki.sqlite
+    # Run migrations. For now, only at wiki creation.
+    (cd /opt/app ; php maintenance/update.php --quick )
+fi
 
 # Wipe /var/run, since pidfiles and socket files from previous launches should go away
 # TODO someday: I'd prefer a tmpfs for these.
