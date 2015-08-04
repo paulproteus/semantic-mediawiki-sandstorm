@@ -16,6 +16,7 @@ if [ ! -f /var/mediawiki-db/my_wiki.sqlite ] ; then
     cp /opt/app/wiki.sqlite /var/mediawiki-db/my_wiki.sqlite
     # Run migrations. For now, only at wiki creation.
     (cd /opt/app ; php maintenance/update.php --quick )
+    (cd /opt/app ; php extensions/SemanticMediaWiki/maintenance/rebuildData.php )
 fi
 
 # Wipe /var/run, since pidfiles and socket files from previous launches should go away
