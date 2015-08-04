@@ -30,7 +30,7 @@ $wgScriptPath = "";
 $wgScriptExtension = ".php";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://h3r10wejt402wkos6hef.local.sandstorm.io";
+$wgServer = '//' . $_SERVER['HTTP_HOST'];
 
 ## The relative URL path to the skins directory
 $wgStylePath = "$wgScriptPath/skins";
